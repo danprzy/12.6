@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var url = 'https://restcountries.eu/rest/v1/name/';
+    var url = 'https://restcountries.eu/rest/v2/name/';
     var countriesList = $('#countries');
 
     $('#search').click(searchCountries);
@@ -18,11 +18,22 @@ $(document).ready(function() {
             success: showCountriesList
         });
     }
-
+    /*
+        function showCountriesList(resp) {
+            countriesList.empty();
+            resp.forEach(function(item) {
+                $('<li>').text(item.name).appendTo(countriesList);
+            });
+        }
+    */
     function showCountriesList(resp) {
         countriesList.empty();
         resp.forEach(function(item) {
             $('<li>').text(item.name).appendTo(countriesList);
+            $('<p>').text('Capital: ' + item.capital).appendTo(countriesList);
+            $('<p>').text('Population: ' + item.population).appendTo(countriesList);
+            $('<p>').append('<img src="' + item.flag + '"></img>').appendTo(countriesList);
         });
     }
+
 });
