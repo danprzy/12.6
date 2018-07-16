@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 
     function searchCountries() {
-        var countryName = $('#country-name').val();
+        var countryName = $('#country-name').val(); // val() is used to get/replace input elements values in jQuery, alternative in JS is .value
         if (!countryName.length) countryName = 'Poland';
         $.ajax({
             url: url + countryName,
@@ -18,14 +18,7 @@ $(document).ready(function() {
             success: showCountriesList
         });
     }
-    /*
-        function showCountriesList(resp) {
-            countriesList.empty();
-            resp.forEach(function(item) {
-                $('<li>').text(item.name).appendTo(countriesList);
-            });
-        }
-    */
+
     function showCountriesList(resp) {
         countriesList.empty();
         resp.forEach(function(item) {

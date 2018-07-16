@@ -2,14 +2,17 @@
 <html>
 	<head>
 	    <meta charset="utf-8">
-	    <title>12.6</title>
+	    <title>Country search</title>
+	<link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">	
 	</head>
 	<body>
 		<h1>Country search engine</h1>
-		<button id="search">Search a country</button>
-		<input id="country-name" type="text" />
-		<h2>List of countries</h2>
+		<div class ="row">
+			<input id="country-name" type="text" placeholder="country..." />
+			<button id="search" class="action-button animate">Search a country</button>
+		</div>
+		<h2>List of countries:</h2>
 		<ul id="countries">
 		  <li>No data</li>
 		</ul>
