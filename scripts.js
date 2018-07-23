@@ -15,18 +15,28 @@ $(document).ready(function() {
         $.ajax({
             url: url + countryName,
             method: 'GET',
-            success: showCountriesList
-        });
-    }
+            data: null,
+            beforeSend: function() {
+                countriesList.empty();
+                $('#countries').text('Loading....');
+            },
 
-    function showCountriesList(resp) {
-        countriesList.empty();
-        resp.forEach(function(item) {
-            $('<li>').text(item.name).appendTo(countriesList);
-            $('<p>').text('Capital: ' + item.capital).appendTo(countriesList);
-            $('<p>').text('Population: ' + item.population).appendTo(countriesList);
-            $('<p>').append('<img src="' + item.flag + '"></img>').appendTo(countriesList);
-        });
-    }
+            success: showCountriesList,
 
+            error: function() {
+                countriesList.empty();
+                $('#countries').text('Oops! Country doesn\'t\ exist. Please try again.')
+            }
+        });
+
+        function showCountriesList(resp) {
+            countriesList.empty();
+            resp.forEach(function(item) {
+                $('<li>').text(item.name).appendTo(countriesList);
+                $('<p>').text('Capital: ' + item.capital).appendTo(countriesList);
+                $('<p>').text('Population: ' + item.population).appendTo(countriesList);
+                $('<p>').append('<img src="' + item.flag + '"></img>').appendTo(countriesList);
+            });
+        };
+    };
 });
